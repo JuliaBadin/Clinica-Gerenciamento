@@ -25,7 +25,7 @@ public class Cliente {
 	
 	public static void main(String[] args) {
 		
-		//acho que tem que inserir os dados por um for pra ter um contador e n√£o
+		//acho que tem que inserir os dados por um for pra ter um contador e n„o
 		//sobrepor em outros clientes
 		 
 		Cliente.cadastrarCliente();
@@ -85,11 +85,11 @@ public class Cliente {
 //		System.out.println("RG: "+rg);
 //		System.out.println("CPF: "+cpf);
 //		System.out.println("Data de nascimento: "+dataNascimento);
-//		System.out.println("Sexo biol√≥gico: "+sexoBiologico);
+//		System.out.println("Sexo biolÛgico: "+sexoBiologico);
 //		System.out.println("Cidade: "+cidade);
 //		System.out.println("Telefone: "+telefone);
-//		System.out.println("Rem√©dios: "+remedios);
-//		System.out.println("Nome de usu√°rio: "+nomeUsuario);
+//		System.out.println("RemÈdios: "+remedios);
+//		System.out.println("Nome de usu·rio: "+nomeUsuario);
 	}
 	
 	public static Cliente cadastrarCliente() {
@@ -121,7 +121,7 @@ public class Cliente {
 //				String telefone = leitor.nextLine();
 //				client.setTelefone(telefone);
 //				
-//				System.out.println("Sexo biol√≥gico:");
+//				System.out.println("Sexo biolÛgico:");
 //				String sexo = leitor.nextLine();
 //				client.setSexo(sexo);
 //				
@@ -129,11 +129,11 @@ public class Cliente {
 //				String cidade = leitor.nextLine();
 //				client.setCidade(cidade);
 //				
-//				System.out.println("Rem√©dios usados com frequ√™ncia:");
+//				System.out.println("RemÈdios usados com frequÍncia:");
 //				String remedio = leitor.nextLine();
 //				client.setRemedios(remedio);
 //				
-//				System.out.println("Nome de usu√°rio:");
+//				System.out.println("Nome de usu·rio:");
 //				String nomeUsuario = leitor.nextLine();
 //				client.setNomeUsuario(nomeUsuario);
 				 
