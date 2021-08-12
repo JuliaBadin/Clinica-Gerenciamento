@@ -3,23 +3,24 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Agendamento {
-    public Integer horario; //String temporaria, depois tem que virar int
-    public Cliente cliente;
-    public String nomeCliente; //temporario
-    public Procedimento procedimento;
-    public String nomeProcedimento; //temporario
-    public Boolean disponivel;
+    public Double horario;
+    public static Cliente cliente;
+    public static Adm atendente;
+    public static Procedimento procedimento;
     
     public static Scanner leitor = new Scanner(System.in);
 
     public static ArrayList<Agendamento> horarios = new ArrayList<>();
-    
-    //nota: o que tá comentado nos get e set depende de ligar com outras classes
-    
+        
     public static void main(String[] args) {
-        Procedimento.criar(); //nota 2: tem que criar pra testar os metodos daqui, pq toda vez que roda o codigo os arraylist zeram
+        Adm.cadastrar();
+        Cliente.cadastrar();
+        Procedimento.criar();
         criar();
         listar();
+        editar();
+        listar();
+        System.out.println(Adm.getListaHorarios());
         //deletar(); ainda tem que criar
     } //ENDMAIN
 
@@ -43,7 +44,7 @@ public class Agendamento {
     public static void criar() {
         Agendamento agendamento = new Agendamento(); 
 
-        System.out.println("Nome do cliente:"); 
+        System.out.println("Nome do cliente:" + cliente.nome); 
         agendamento.setCliente(Cliente.nome); //tem que puxar pelo nome de usuario/id
         
         System.out.println("\nDigite o número do procedimento que deseja selecionar:");
@@ -56,12 +57,46 @@ public class Agendamento {
         Adm.listar();
         System.out.println("\nAtendente:");
         Integer nAdm = leitor.nextInt();
-        agendamento.setAtentende(Adm.listaAdm.get(nProced-1).getNome());
+        agendamento.setAtentende(Adm.listaAdm.get(nAdm-1).getNome());
 
-        System.out.println("Horário:");
-        agendamento.setHorario(leitor.nextInt());
-
-        agendamento.setDisponivel();
+        System.out.println("\nHorarios Disponiveis:");
+        System.out.println(Adm.getListaHorarios());
+        System.out.println("\nDigite o horário que deseja no formato hh.mm:");
+        Double horaEscolhida = leitor.nextDouble();
+        agendamento.setHorario(horaEscolhida);
+        for (Horario horario : Adm.listaAdm.get(nAdm-1).getListaHorarios()){
+            if(horaEscolhida.equals(horario.horario)){
+                //Adm.listaHorarios.disponivel = false;
+                if(procedimento.duracao <= 30){
+                    horario.disponivel = false;
+                } else if(procedimento.duracao <= 60){
+                    horario.disponivel = false; 
+                    horario.disponivel = false; //+1
+                } else if(procedimento.duracao <= 90){
+                    horario.disponivel = false; 
+                    horario.disponivel = false; //+1
+                    horario.disponivel = false; //+2
+                } else if(procedimento.duracao <= 120){
+                    horario.disponivel = false; 
+                    horario.disponivel = false; //+1
+                    horario.disponivel = false; //+2
+                    horario.disponivel = false; //+3
+                } else if(procedimento.duracao <= 150){
+                    horario.disponivel = false; 
+                    horario.disponivel = false; //+1
+                    horario.disponivel = false; //+2
+                    horario.disponivel = false; //+3
+                    horario.disponivel = false; //+4
+                } else if(procedimento.duracao <= 180){
+                    horario.disponivel = false; 
+                    horario.disponivel = false; //+1
+                    horario.disponivel = false; //+2
+                    horario.disponivel = false; //+3
+                    horario.disponivel = false; //+4
+                    horario.disponivel = false; //+5
+                }
+            }
+        }
         
         horarios.add(agendamento);        
         Cliente.horario = agendamento;
@@ -83,61 +118,59 @@ public class Agendamento {
 
         System.out.println("\nHorário atual:" + agendamento.getHorario());
         System.out.println("Novo horário:");
-        agendamento.setHorario(leitor.nextInt());
+        Double horaEscolhida = leitor.nextDouble();
+        agendamento.setHorario(horaEscolhida);
+        
+        for (Horario horario : agendamento.atendente.getListaHorarios()){
+            if(horaEscolhida.equals(horario.horario)){
+                horario.disponivel = true;
+            }
+        }
 
-        agendamento.setDisponivel(); //tem que dar um jeito do horario anterior voltar a ficar disponivel
     }
     
     public static void deletar(){
         /*if (usuario logado é o mesmo do agendamento){
-            Cliente.horario = null;
-            //tem que ver o bagulho do boolean disponivel
+            listar();
+            System.out.println("\n Digite o ID do agendamento que deseja excluir:");
+            Integer id = leitor.nextInt();
+            Agendamento agendamento = horarios.get(id-1); 
+            agendamento.atendente.disponivel = true;
+            cliente = null;
         }*/
         
     }
     
-    public Integer getHorario() {
+    public Double getHorario() {
         return horario;
     }
 
     public String getCliente() {
-       return nomeCliente;
-       //return cliente.nome;
+       return Cliente.nome;
     }
     
-    public Boolean getDisponivel() {
-        return disponivel;
-    }
 
     public String getProcedimento() {
-        return nomeProcedimento;
-        //return procedimento.nome;
+        return procedimento.nome;
     }
     
+    public String getAtendente() {
+        return atendente.nome;
+    }
     
     public void setCliente(String cliente) {
-        //this.cliente.nome = cliente; //pegar pelo login
-        this.nomeCliente = cliente;
+        Cliente.nome = cliente;
     }
 
     public void setProcedimento(String procedimento) {
-        //this.procedimento.nome = procedimento;
-        this.nomeProcedimento = procedimento;
-    }
-
-    public void setDisponivel() {
-        this.disponivel = false;
+        this.procedimento.nome = procedimento; //diz que this.procedimento é nulo
     }
     
-    public void setHorario(Integer horario) {
+    public void setHorario(Double horario) {
         this.horario = horario;
     } 
 
-    private String getAtendente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void setAtentende(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setAtentende(String atendente) {
+        this.atendente.nome = atendente;
     }
 }

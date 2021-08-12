@@ -2,15 +2,16 @@ package poo.clinica;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class Adm {
+public class Adm extends Horario{
 
-	public String nomeUsuario;
-	public String senha;
+	String nomeUsuario;
+	private String senha;
 	public String nome;
-	public String email;
-	public String telefone;
-	
-        public static ArrayList<Adm> listaAdm = new ArrayList<>();
+	String email;
+	String telefone;
+        
+        static ArrayList<Agendamento> listaAgendamentos = new ArrayList<>();
+        static ArrayList<Adm> listaAdm = new ArrayList<>();
         
         static Scanner leitor = new Scanner(System.in);
         
@@ -20,6 +21,7 @@ public class Adm {
             deletar();
 
 	} //end main
+
 
     public static void listar(){
         for (int i = 0; i < listaAdm.size(); i++){
@@ -38,7 +40,7 @@ public class Adm {
             }
         }
     }
-   
+    
     public static void cadastrar(){
         Adm administrador = new Adm();
         
@@ -52,7 +54,7 @@ public class Adm {
         administrador.setEmail(leitor.nextLine());
         System.out.println("Telefone: ");
         administrador.setTelefone(leitor.nextLine());
-        
+                
         listaAdm.add(administrador);
     }
     
@@ -99,6 +101,7 @@ public class Adm {
     public String getTelefone() {
         return telefone;
     }
+    
 
     public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;

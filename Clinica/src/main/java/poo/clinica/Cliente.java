@@ -4,19 +4,19 @@ import java.util.Scanner;
 
 public class Cliente {
 
-    public String cidade;
-    public static String nome; //precisei deixar static pra acessar na classe agendamento
-    public String sobrenome;
-    public String telefone;
-    public String email; 
-    public String dataNascimento;
-    public String sexoBiologico;
-    public String rg;
-    public String cpf;
-    public String remedios;
-    public String nomeUsuario; //único, funcionará como id
-    public String senha;
-    public static Agendamento horario;
+    String cidade;
+    public static String nome;
+    public static String sobrenome;
+    String telefone;
+    String email; 
+    String dataNascimento;
+    String sexoBiologico;
+    String rg;
+    String cpf;
+    String remedios;
+    static String nomeUsuario; //único, funcionará como id
+    private String senha;
+    static Agendamento horario;
     
     //não sei se agendamento tem que ser array ou atributo, pq normalmente só marcamos 1 horário por vez
     //public static ArrayList<Agendamento> listaAgendamentos = new ArrayList<>();
@@ -139,14 +139,14 @@ public static void editar() {
     }
 
 public static void verHorario(){
-    System.out.println("\nCliente: " + horario.nomeCliente);
-    System.out.println("Procedimento: " + horario.nomeProcedimento);
+    System.out.println("\nCliente: " + horario.cliente);
+    System.out.println("Procedimento: " + horario.procedimento);
     System.out.println("Horário: " + horario.horario);   
 }
 
 //SETTER
     public void setNome(String nome) {
-            Cliente.nome = nome;
+            this.nome = nome;
     }
 
     public void setSobrenome(String sobrenome) {
@@ -242,4 +242,4 @@ public static void verHorario(){
     public String getSenha() {
         return senha;
     }
-}//end class
+}
